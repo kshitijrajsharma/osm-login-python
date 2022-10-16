@@ -24,7 +24,7 @@ class Auth:
     ):
         authorize_url = f"{self.osm_url}/oauth2/authorize/"
         login_url, _ = self.oauth.authorization_url(authorize_url)
-        return Login(url=login_url).json()
+        return Login(login_url=login_url).json()
 
     def callback(self, callback_url: str):
         token_url = f"{self.osm_url}/oauth2/token"
