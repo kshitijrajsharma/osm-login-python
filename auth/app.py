@@ -13,7 +13,6 @@ class Auth:
         self.osm_url = osm_url
         self.client_secret = client_secret
         self.secret_key = secret_key
-        self.authorize_url = f"{osm_url}/oauth2/authorize/"
         self.oauth = OAuth2Session(
             client_id,
             redirect_uri=login_redirect_uri,
@@ -23,8 +22,8 @@ class Auth:
     def login(
         self,
     ):
-
-        login_url, _ = self.oauth.authorization_url(self.authorize_url)
+        authorize_url = f"{self.osm_url}/oauth2/authorize/"
+        login_url, _ = self.oauth.authorization_url(authorize_url)
         return Login(url=login_url)
 
     def callback(self, callback_url: str):
