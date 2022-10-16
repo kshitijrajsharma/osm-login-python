@@ -24,7 +24,7 @@ class Auth:
     ):
         authorize_url = f"{self.osm_url}/oauth2/authorize/"
         login_url, _ = self.oauth.authorization_url(authorize_url)
-        return Login(url=login_url)
+        return Login(url=login_url).json()
 
     def callback(self, callback_url: str):
         token_url = f"{self.osm_url}/oauth2/token"
@@ -47,7 +47,7 @@ class Auth:
         token = serializer.dumps(user_data)
         access_token = base64.b64encode(bytes(token, "utf-8")).decode("utf-8")
         token = Token(access_token=access_token)
-        return token
+        return token.json()
 
     def deserialize_access_token(self, access_token: str):
         deserializer = URLSafeSerializer(self.secret_key)
