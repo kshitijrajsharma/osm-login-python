@@ -6,6 +6,7 @@ Makes it very easier for the application to implement osm authentication login t
 Example on django : 
 
 ```
+from django.conf import settings
 from osm_auth.app import Auth
 from django.http import JsonResponse
 import json
