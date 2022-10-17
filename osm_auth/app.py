@@ -22,11 +22,22 @@ class Auth:
     def login(
         self,
     ):
+        """Provides login URL using the session created by osm client id and redirect uri supplied"""
         authorize_url = f"{self.osm_url}/oauth2/authorize/"
         login_url, _ = self.oauth.authorization_url(authorize_url)
         return Login(login_url=login_url).json()
 
     def callback(self, callback_url: str):
+        """Performs token exchange between OpenStreetMap and the Application supplied
+
+        Core will use Oauth secret key from configuration while deserializing token,
+        provides access token that can be used for authorized endpoints.
+
+        Parameters: callback_url : Absolute URL should be passed which is catched from login_redirect_uri
+
+        Returns:
+        - access_token (json)
+        """
         token_url = f"{self.osm_url}/oauth2/token"
         self.oauth.fetch_token(
             token_url,
@@ -50,6 +61,7 @@ class Auth:
         return token.json()
 
     def deserialize_access_token(self, access_token: str):
+        """Returns the userdata as json from access token , Can be used for login required decorator or to check the access token provided"""
         deserializer = URLSafeSerializer(self.secret_key)
 
         try:
