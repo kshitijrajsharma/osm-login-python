@@ -7,7 +7,7 @@ requirements = ["itsdangerous~=2.1.2", "pydantic~=1.10.2", "requests_oauthlib~=1
 
 setuptools.setup(
     name="osm-login-python",
-    version="0.0.1",
+    version="0.0.2",
     author="Kshitij Raj Sharma",
     author_email="kshitij.sharma@hotosm.org",
     description="Use OSM Token exchange with OAuth2.0 for python projects",
