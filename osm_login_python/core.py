@@ -3,6 +3,7 @@ from pydantic import ValidationError
 from requests_oauthlib import OAuth2Session
 from itsdangerous.url_safe import URLSafeSerializer
 from itsdangerous import BadSignature, SignatureExpired
+import json
 from . import Login, Token
 
 
@@ -25,7 +26,7 @@ class Auth:
         """Provides login URL using the session created by osm client id and redirect uri supplied"""
         authorize_url = f"{self.osm_url}/oauth2/authorize/"
         login_url, _ = self.oauth.authorization_url(authorize_url)
-        return Login(login_url=login_url).json()
+        return json.loads(Login(login_url=login_url).json())
 
     def callback(self, callback_url: str):
         """Performs token exchange between OpenStreetMap and the Application supplied
@@ -58,7 +59,7 @@ class Auth:
         token = serializer.dumps(user_data)
         access_token = base64.b64encode(bytes(token, "utf-8")).decode("utf-8")
         token = Token(access_token=access_token)
-        return token.json()
+        return json.loads(token.json())
 
     def deserialize_access_token(self, access_token: str):
         """Returns the userdata as json from access token , Can be used for login required decorator or to check the access token provided"""

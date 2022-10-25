@@ -3,7 +3,7 @@ Library to provide osm login oauth2.0 exchange to python projects
 
 Makes it very easier to implement osm authentication login to their project with oauth2.0
 
-## Install with [pip](https://pypi.org/project/osm-login-python/0.0.2/) : 
+## Install with [pip](https://pypi.org/project/osm-login-python/0.0.2/) :
 
 ```
 pip install osm-login-python==0.0.2
@@ -22,7 +22,7 @@ Provides 3 Functions inside Auth class :
 2. callback() -- Returns the access token for the user
 3. deserialize_access_token() -- returns the user data
 
-## Example 
+## Example
 On django :
 
 ```
@@ -36,12 +36,12 @@ osm_auth=Auth(osm_url=settings.OSM_URL, client_id=settings.OSM_CLIENT_ID,client_
 
 def login(request):
     login_url=osm_auth.login()
-    return JsonResponse(json.loads(login_url))
+    return JsonResponse(login_url)
 
 def callback(request):
     # Generating token through osm_auth library method
     token=osm_auth.callback(request.build_absolute_uri())
-    return JsonResponse(json.loads(token))
+    return JsonResponse(token)
 
 def get_my_data(request,access_token: str):
     user_data=osm_auth.deserialize_access_token(access_token)
