@@ -47,3 +47,5 @@ def get_my_data(request,access_token: str):
     user_data=osm_auth.deserialize_access_token(access_token)
     return JsonResponse(user_data)
  ```
+Check Django integration example here https://github.com/hotosm/fAIr/tree/master/backend/login 
+Check FastAPI integration example here https://github.com/hotosm/export-tool-api/tree/develop/API/auth
