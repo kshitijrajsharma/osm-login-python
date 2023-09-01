@@ -3,7 +3,7 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-requirements = ["itsdangerous~=2.1.2", "pydantic~=1.10.2", "requests_oauthlib~=1.3.1"]
+requirements = ["itsdangerous~=2.1.2", "pydantic~=2.3.0", "requests_oauthlib~=1.3.1"]
 
 setuptools.setup(
     name="osm-login-python",
