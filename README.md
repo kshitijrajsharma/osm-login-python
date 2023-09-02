@@ -54,3 +54,7 @@ def get_my_data(request,access_token: str):
 
 ### Version Control 
 Use [commitizen](https://pypi.org/project/commitizen/) for version control 
+
+### Contirbute
+
+Contributions are welcome ! 
